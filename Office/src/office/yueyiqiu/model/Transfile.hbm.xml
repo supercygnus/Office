@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/1/4 ?W?? 10:24:47 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.Transfile" table="oa_transfile">
+        <id name="fileNumber" type="int">
+            <column name="transfile_number" />
+            <generator class="increment" />
+        </id>
+        <property name="fileName" type="java.lang.String">
+            <column name="transfile_name" />
+        </property>
+        <property name="fileRealName" type="java.lang.String">
+            <column name="transfile_realname" />
+        </property>
+        <property name="fromUser" type="int">
+            <column name="transfile_fromuser" />
+        </property>
+        <property name="toUser" type="int">
+            <column name="transfile_touser" />
+        </property>
+        <property name="time" type="java.util.Date">
+            <column name="transfile_time" />
+        </property>
+        <property name="fileInfo" type="java.lang.String">
+            <column name="transfile_info" />
+        </property>
+        <property name="fileType" type="java.lang.String">
+            <column name="transfile_type" />
+        </property>
+    </class>
+</hibernate-mapping>

@@ -1,0 +1,25 @@
+
+#maincontent ul{
+	list-style: none;
+	width: 750px;
+	overflow: auto;
+}
+
+
+#maincontent ul li{
+	float: left;
+}
+
+
+#maincontent ul a{
+	
+	color:#2523D7;
+	text-decoration: none;
+	width: 120px;
+	height: 18px;
+	 
+}
+
+#maincontent ul a:hover{
+	color: #DC00D9;
+}

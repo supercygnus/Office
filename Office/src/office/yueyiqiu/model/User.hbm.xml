@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2013/12/31 ?U?? 02:20:20 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.User" table="oa_user">
+        <id name="userNumber" type="int">
+            <column name="user_number" />
+            <generator class="increment" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" />
+        </property>
+        <property name="userPassword" type="java.lang.String">
+            <column name="user_pwd" />
+        </property>
+        <many-to-one name="role" class="office.yueyiqiu.model.Role" fetch="join" lazy="false">
+            <column name="role_number" />
+        </many-to-one>
+    </class>
+</hibernate-mapping>

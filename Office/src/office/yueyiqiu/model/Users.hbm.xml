@@ -1,0 +1,54 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/1/9 ?U?? 03:13:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.Users" table="oa_user">
+        <id name="userNumber" type="int">
+            <column name="user_number" />
+            <generator class="increment" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" />
+        </property>
+        <property name="userPwd" type="java.lang.String">
+            <column name="user_pwd" />
+        </property>
+        <property name="userRealName" type="java.lang.String">
+            <column name="user_realname" />
+        </property>
+        <property name="userGender" type="java.lang.String">
+            <column name="user_gender" />
+        </property>
+        <property name="userBirth" type="java.util.Date">
+            <column name="user_birth" />
+        </property>
+        <property name="deptNumber" type="int">
+            <column name="dept_number" />
+        </property>
+        <property name="groupNumber" type="int">
+            <column name="group_number" />
+        </property>
+        <property name="roleNumber" type="int">
+            <column name="role_number" />
+        </property>
+        <property name="userEmail" type="java.lang.String">
+            <column name="user_email" />
+        </property>
+        <property name="jianli" type="java.lang.String">
+            <column name="user_jianli" />
+        </property>
+        
+        <property name="imgpath" type="java.lang.String">
+            <column name="user_imgpath" />
+        </property>
+        
+        <property name="userPhone" type="java.lang.String">
+            <column name="user_phone" />
+        </property>
+        
+        <property name="salary" type="int">
+            <column name="user_salary" />
+        </property>
+    </class>
+</hibernate-mapping>

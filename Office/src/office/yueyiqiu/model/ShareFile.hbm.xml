@@ -1,0 +1,41 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/1/9 ?U?? 10:49:27 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.ShareFile" table="oa_sharefile">
+        <id name="shareNumber" type="int">
+            <column name="share_number" />
+            <generator class="assigned" />
+        </id>
+        <property name="shareName" type="java.lang.String">
+            <column name="share_name" />
+        </property>
+        <property name="realName" type="java.lang.String">
+            <column name="share_realname" />
+        </property>
+        <property name="fromUser" type="int">
+            <column name="share_fromuser" />
+        </property>
+        <property name="time" type="java.util.Date">
+            <column name="share_time" />
+        </property>
+        <property name="shareTitle" type="java.lang.String">
+            <column name="share_title" />
+        </property>
+        <property name="shareInfo" type="java.lang.String">
+            <column name="share_info" />
+        </property>
+        <property name="size" type="double">
+            <column name="share_size" />
+        </property>
+        <property name="shareType" type="int">
+            <column name="share_type" />
+        </property>
+        <property name="shareFileType" type="java.lang.String">
+            <column name="share_filetype" />
+        </property>
+       
+        
+    </class>
+</hibernate-mapping>

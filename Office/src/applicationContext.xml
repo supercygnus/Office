@@ -1,0 +1,409 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd
+	http://www.springframework.org/schema/context
+	http://www.springframework.org/schema/context/spring-context-2.5.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-2.5.xsd 
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-2.5.xsd">
+
+<context:annotation-config /> 
+<context:component-scan base-package="site.yueyiqiu"/>  
+
+<bean id="sessionFactory" class="org.springframework.orm.hibernate3.LocalSessionFactoryBean">
+
+
+<property name="configLocation">
+<value>classpath:hibernate.cfg.xml</value>
+</property>
+
+</bean>
+
+
+
+<bean id="transactionManager" class="org.springframework.orm.hibernate3.HibernateTransactionManager">    
+<property name="sessionFactory" ref="sessionFactory"/>    
+</bean>   
+
+<tx:annotation-driven transaction-manager="transactionManager"/>
+	
+	<bean id="dailyTask" class="office.yueyiqiu.util.DailyTask" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="scheduleDailytask" class="org.springframework.scheduling.timer.ScheduledTimerTask">
+		<property name="timerTask" ref="dailyTask"></property>
+		<property name="period" value="1000000"></property>
+	</bean>
+	
+	<bean class="org.springframework.scheduling.timer.TimerFactoryBean">
+		<property name="scheduledTimerTasks">
+			<list>
+				<ref local="scheduleDailytask"/>
+			</list>
+		</property>
+	</bean>
+	 
+	<bean id="LoginDB" class="office.yueyiqiu.util.LoginDB">
+		<property name="sf">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="SearchDB" class="office.yueyiqiu.util.SearchDB">
+		<property name="sf">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="InsertDB" class="office.yueyiqiu.util.InsertDB">
+		<property name="sf">
+			<ref local="sessionFactory"/>
+		</property>
+	</bean>
+	
+	<bean id="LoginAction" class="office.yueyiqiu.action.LoginAction" scope="prototype">
+	<property name="loginDB">
+		<ref local="LoginDB"/>
+	</property>
+	<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ExitSysAction" class="office.yueyiqiu.action.ExitSysAction" scope="prototype">
+	</bean>
+	
+	<bean id="MainManageAction" class="office.yueyiqiu.action.MainManageAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="TopAction" class="office.yueyiqiu.action.TopAction" scope="prototype"></bean>
+	<bean id="LeftTreeAction" class="office.yueyiqiu.action.LeftTreeAction" scope="prototype"></bean>
+	
+	<bean id="SendFileAction" class="office.yueyiqiu.action.SendFileAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ReceiveFileAction" class="office.yueyiqiu.action.ReceiveFileAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="PageModelAction" class="office.yueyiqiu.action.PageModelAction" scope="prototype">
+		
+	</bean>
+	
+	<bean id="UserListAction" class="office.yueyiqiu.action.UserListAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendFile2Action" class="office.yueyiqiu.action.SendFile2Action" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ReceiveMessageAction" class="office.yueyiqiu.action.ReceiveMessageAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendMessageAction" class="office.yueyiqiu.action.SendMessageAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendMessage2Action" class="office.yueyiqiu.action.SendMessage2Action" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="MsgDetailAction" class="office.yueyiqiu.action.MsgDetailAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="UploadShareAction" class="office.yueyiqiu.action.UploadShareAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ViewShareAction" class="office.yueyiqiu.action.ViewShareAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="UploadShare2Action" class="office.yueyiqiu.action.UploadShare2Action" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ManageShareAction" class="office.yueyiqiu.action.ManageShareAction" scope="prototype">
+	
+	</bean>
+	
+	<bean id="DelMessageAction" class="office.yueyiqiu.action.DelMessageAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="DelTransFileAction" class="office.yueyiqiu.action.DelTransFileAction" scope="prototype">
+	
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="LoadFileAction" class="office.yueyiqiu.action.LoadFileAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AddUserAction" class="office.yueyiqiu.action.AddUserAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AddUser2Action" class="office.yueyiqiu.action.AddUser2Action" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ViewUserAction" class="office.yueyiqiu.action.ViewUserAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="UserUniqueAction" class="office.yueyiqiu.action.UserUniqueAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="GroupListAction" class="office.yueyiqiu.action.GroupListAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="RoleListAction" class="office.yueyiqiu.action.RoleListAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ChangePwdAction" class="office.yueyiqiu.action.ChangePwdAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="UserDetailAction" class="office.yueyiqiu.action.UserDetailAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AttOnlineAction" class="office.yueyiqiu.action.AttOnlineAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	
+	<bean id="CheckOnAction" class="office.yueyiqiu.action.CheckOnAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AttTimeAction" class="office.yueyiqiu.action.AttTimeAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ChangeAttAction" class="office.yueyiqiu.action.ChangeAttAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendDocAction" class="office.yueyiqiu.action.SendDocAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendDoc2Action" class="office.yueyiqiu.action.SendDoc2Action" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="MyDocAction" class="office.yueyiqiu.action.MyDocAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AllDocAction" class="office.yueyiqiu.action.AllDocAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ViewDocAction" class="office.yueyiqiu.action.ViewDocAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ChangePicAction" class="office.yueyiqiu.action.ChangePicAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="DelShareAction" class="office.yueyiqiu.action.DelShareAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ViewAttAction" class="office.yueyiqiu.action.ViewAttAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendAlarmAction" class="office.yueyiqiu.action.SendAlarmAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="SendAlarm2Action" class="office.yueyiqiu.action.SendAlarm2Action" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ViewAlarmAction" class="office.yueyiqiu.action.ViewAlarmAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="AlarmDetailAction" class="office.yueyiqiu.action.AlarmDetailAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="DelAlarmAction" class="office.yueyiqiu.action.DelAlarmAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	<bean id="DocProAction" class="office.yueyiqiu.action.DocProAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="ReadDocAction" class="office.yueyiqiu.action.ReadDocAction" scope="prototype">
+		<property name="searchDB">
+			<ref local="SearchDB"/>
+		</property>
+	</bean>
+	
+	<bean id="OpDocAction" class="office.yueyiqiu.action.OpDocAction" scope="prototype">
+		<property name="insertDB">
+			<ref local="InsertDB"/>
+		</property>
+	</bean>
+	
+	
+	<bean id="MailSender" class="org.springframework.mail.javamail.JavaMailSenderImpl">
+		<property name="host" value="smtp.gmail.com"></property>
+		<property name="port" value="587"></property>
+		<property name="username" value="yueyiqiu100@gmail.com"></property>
+		<property name="password" value="2agilrdl"></property>
+		<property name="javaMailProperties">
+			<props>
+				<prop key="mail.smtp.auth">true</prop>
+				<prop key="mail.smtp.starttls.enable">true</prop>
+			</props>
+		</property>
+	</bean>
+	
+	
+	<bean id="SendEmailAction" class="office.yueyiqiu.action.SendEmailAction" scope="prototype">
+		<property name="mailSender">
+			<ref local="MailSender"/>
+		</property>
+	</bean>
+	
+	
+</beans>

@@ -1,0 +1,54 @@
+
+body{
+	text-align: left;
+	margin: 0 auto;
+}
+
+#container{
+	width:800px;
+	margin: 0 auto;
+	background-color: #d6d6d4;
+}
+
+#uid{
+	
+	width: 170px;
+	height: 20px;
+	
+}
+
+
+#pwd{
+	
+	width: 170px;
+	height: 20px;
+	
+}
+
+
+#verifycode{
+	
+	width: 50px;
+	height: 20px;
+	
+}
+
+#ipic{
+	
+	position: absolute;
+	
+}
+
+table{
+	font-size: 19px;
+	width: 300px;
+}
+
+
+.jd{
+	
+	visibility: hidden;
+	z-index: 1;
+	position: absolute;
+}
+

@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/1/1 ?U?? 06:09:39 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.Dept" table="oa_dept">
+        <id name="deptNumber" type="int">
+            <column name="dept_number" />
+            <generator class="increment" />
+        </id>
+        <property name="deptName" type="java.lang.String">
+            <column name="dept_name" />
+        </property>
+    </class>
+</hibernate-mapping>

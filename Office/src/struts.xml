@@ -1,0 +1,305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+	
+<struts>
+ 
+<package name="login" extends="struts-default">
+<action name="login" class="LoginAction">
+<result name="success">/login.jsp</result>
+<result name="mainmanage" type="redirectAction">
+<param name="actionName">mainManage</param>
+</result>
+</action>
+
+	<action name="exitSys" class="ExitSysAction">
+		<result name="success">/login.jsp</result>
+	</action>
+
+</package>
+
+<package name="topmanage" extends="struts-default">
+
+	<interceptors>
+		<interceptor name="topinterceptor" class="office.yueyiqiu.interceptor.TopInterceptor"></interceptor>
+		<interceptor-stack name="myDefaultTop">
+			<interceptor-ref name="topinterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="myDefaultTop"></default-interceptor-ref>
+	<global-results>
+		<result name="login">/login.jsp</result>
+	</global-results>
+	<action name="addUser" class="AddUserAction">
+		<result name="success">/addUser.jsp</result>
+	</action>
+	
+	<action name="viewUser" class="ViewUserAction">
+		<result name="success">/viewUser.jsp</result>
+	</action>
+	
+	<action name="userDetail" class="UserDetailAction">
+		<result name="success">/userDetail.jsp</result>
+	</action>
+	
+	<action name="userUnique" class="UserUniqueAction">
+		<result name="success">/flag.jsp</result>
+	</action>
+	
+	<action name="groupList" class="GroupListAction">
+		<result name="success">/groupList.jsp</result>
+	</action>
+	
+	<action name="roleList" class="RoleListAction">
+		<result name="success">/roleList.jsp</result>
+	</action>
+	
+	<action name="attTime" class="AttTimeAction">
+		<result name="success">/attTime.jsp</result>
+	</action>
+	
+	<action name="changeAtt" class="ChangeAttAction">
+		<result name="success" type="redirectAction">
+			<param name="actionName">attTime</param>
+		</result>
+	</action>
+	
+	<action name="addUser2" class="AddUser2Action">
+		<param name="savePath">/headpic</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">addUser</param>
+		</result>
+	</action>
+	
+	<action name="changePic" class="ChangePicAction">
+		<param name="savePath">/headpic</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">userDetail</param>
+			<param name="result">${result}</param>
+			<param name="userNumber">${userNumber}</param>
+		</result>
+	</action>
+	
+	<action name="manageShare" class="ViewShareAction">
+		<result name="success">/manageShare.jsp</result>
+	</action>
+	
+	<action name="delShare" class="DelShareAction">
+		<param name="inputPath">/sharefile</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">manageShare</param>
+		</result>
+	</action>
+	
+	<action name="viewAtt" class="ViewAttAction">
+		<result name="success">/viewAtt.jsp</result>
+	</action>
+	
+	<action name="viewAlarm" class="ViewAlarmAction">
+		<result name="success">/viewAlarm.jsp</result>
+	</action>
+	
+	<action name="alarmDetail" class="AlarmDetailAction">
+		<result name="success">/alarmDetail.jsp</result>
+	</action>
+	
+	<action name="delAlarm" class="DelAlarmAction">
+		<result name="success" type="redirectAction">
+			<param name="actionName">viewAlarm</param>
+			<param name="currentPage">${currentPage}</param>
+		</result>
+	</action>
+	
+</package>
+
+<package name="middlemanage" extends="struts-default">
+	
+	<interceptors>
+		<interceptor name="middleinterceptor" class="office.yueyiqiu.interceptor.MiddleInterceptor"></interceptor>
+		<interceptor-stack name="myDefaultMiddle">
+			<interceptor-ref name="middleinterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="myDefaultMiddle"></default-interceptor-ref>
+	<global-results>
+		<result name="login">/login.jsp</result>
+	</global-results>
+	
+	<action name="viewDoc" class="ViewDocAction">
+		<result name="success">/viewDoc.jsp</result>
+	</action>
+	
+	<action name="readDoc" class="ReadDocAction">
+		<result name="success">/readDoc.jsp</result>
+	</action>
+	
+	<action name="opDoc" class="OpDocAction">
+		<result name="success" type="redirectAction">
+			<param name="actionName">viewDoc</param>
+		</result>
+	</action>
+	
+</package>
+
+<package name="bottommanage" extends="struts-default">
+
+	<interceptors>
+		<interceptor name="bottominterceptor" class="office.yueyiqiu.interceptor.BottomInterceptor"></interceptor>
+		<interceptor-stack name="myDefaultBottom">
+			<interceptor-ref name="bottominterceptor"></interceptor-ref>
+			<interceptor-ref name="defaultStack"></interceptor-ref>
+		</interceptor-stack>
+	</interceptors>
+	<default-interceptor-ref name="myDefaultBottom"></default-interceptor-ref>
+	<global-results>
+		<result name="login">/login.jsp</result>
+	</global-results>
+
+	<action name="mainManage" class="MainManageAction">
+		<result name="success">/mainManage.jsp</result>
+	</action>
+	
+	<action name="top" class="TopAction">
+		<result name="success">/top.jsp</result>
+	</action>
+	
+	<action name="leftTree" class="LeftTreeAction">
+		<result name="success">/lefttree.jsp</result>
+	</action>
+	
+	<action name="sendFile" class="SendFileAction">
+		<result name="success">/sendFile.jsp</result>
+	</action>
+	
+	<action name="receiveFile" class="ReceiveFileAction">
+		<result name="success">/receiveFile.jsp</result>
+	</action>
+	
+	<action name="userListAction" class="UserListAction">
+		<result name="success">/userlist.jsp</result>
+	</action>
+	
+	<action name="sendFile2" class="SendFile2Action">
+		<param name="savePath">/transfile</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">sendFile</param>
+		</result>
+	</action>
+	
+	<action name="receiveMessage" class="ReceiveMessageAction">
+		<result name="success">/receiveMessage.jsp</result>
+	</action>
+	
+	<action name="sendMessage" class="SendMessageAction">
+		<result name="success">/sendMessage.jsp</result>
+	</action>
+	
+	<action name="sendMessage2" class="SendMessage2Action">
+		<result name="success" type="redirectAction">
+			<param name="actionName">sendMessage</param>
+		</result>
+	</action>
+
+	<action name="msgDetail" class="MsgDetailAction">
+		<result name="success">/msgDetail.jsp</result>
+	</action>
+	
+	<action name="uploadShare" class="UploadShareAction">
+		<result name="success">/uploadShare.jsp</result>
+	</action>
+	
+	<action name="uploadShare2" class="UploadShare2Action">
+			<param name="savePath">/sharefile</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">uploadShare</param>
+		</result>
+	</action>
+	
+	<action name="delTransFile" class="DelTransFileAction">
+		<param name="inputPath">/transfile</param>
+		<result name="success" type="redirectAction">
+			<param name="actionName">receiveFile</param>
+		</result>
+		<result name="input">/login.jsp</result>
+	</action>
+	
+	<action name="delMsg" class="DelMessageAction">
+		<result name="success" type="redirectAction">
+			<param name="actionName">receiveMessage</param>
+			<param name="currentPage">${currentPage}</param>
+		</result>
+	</action>
+	
+	<action name="loadFile" class="LoadFileAction">
+		<param name="inputPath">/transfile</param>
+		<param name="fileName">中文附件.txt</param>
+		<result name="success" type="stream">
+			<param name="contentType">${fileType}</param>
+			<param name="inputName">inputDownloadStream</param>
+			<param name="contentDisposition">attachment;filename=${downloadName}</param>
+			<param name="bufferSize">4096</param>
+		</result>
+	</action>
+	
+	<action name="changePwd" class="ChangePwdAction">
+		<result name="success">/changePwd.jsp</result>
+	</action>
+	
+	<action name="attOnline" class="AttOnlineAction">
+		<result name="success">/attOnline.jsp</result>
+	</action>
+	
+	<action name="checkOn" class="CheckOnAction">
+		<result name="success" type="redirectAction">
+			<param name="actionName">attOnline</param>
+		</result>
+	</action>
+	
+	<action name="sendDoc2" class="SendDoc2Action">
+		<result name="success" type="redirectAction">
+			<param name="actionName">sendDoc</param>
+		</result>
+	</action>
+	
+	<action name="sendDoc" class="SendDocAction">
+		<result name="success">/sendDoc.jsp</result>
+	</action>
+	
+	<action name="myDoc" class="MyDocAction">
+		<result name="success">/myDoc.jsp</result>
+	</action>
+	
+	<action name="allDoc" class="AllDocAction">
+		<result name="success">/allDoc.jsp</result>
+	</action>
+	
+	<action name="viewShare" class="ViewShareAction">
+		<result name="success">/viewShare.jsp</result>
+	</action>
+	
+	<action name="sendAlarm" class="SendAlarmAction">
+		<result name="success">/sendAlarm.jsp</result>
+	</action>
+	
+	<action name="sendAlarm2" class="SendAlarm2Action">
+		<result name="success" type="redirectAction">
+			<param name="actionName">sendAlarm</param>
+		</result>
+	</action>
+	
+	<action name="docPro" class="DocProAction">
+		<result name="success">/docPro.jsp</result>
+	</action>
+	
+	<action name="sendEmail" class="SendEmailAction">
+		<result name="success">/sendEmail.jsp</result>
+	</action>
+	
+</package>
+ 
+</struts>
+
+

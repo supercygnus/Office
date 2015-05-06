@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<!-- Generated 2014/1/1 ?U?? 01:50:02 by Hibernate Tools 3.4.0.CR1 -->
+<hibernate-mapping>
+    <class name="office.yueyiqiu.model.NewUser" table="oa_user">
+        <id name="userNumber" type="int">
+            <column name="userNumber" />
+            <generator class="increment" />
+        </id>
+        <property name="userName" type="java.lang.String">
+            <column name="user_name" />
+        </property>
+        <property name="userPwd" type="java.lang.String">
+            <column name="user_pwd" />
+        </property>
+        <property name="realName" type="java.lang.String">
+            <column name="user_realname" />
+        </property>
+        <property name="gender" type="java.lang.String">
+            <column name="user_gender" />
+        </property>
+        <property name="birth" type="java.util.Date">
+            <column name="user_birth" />
+        </property>
+        <property name="deptNumber" type="int">
+            <column name="dept_number" />
+        </property>
+        <property name="groupNumber" type="int">
+            <column name="group_number" />
+        </property>
+        <property name="roleNumber" type="int">
+            <column name="role_number" />
+        </property>
+        <property name="email" type="java.lang.String">
+            <column name="user_email" />
+        </property>
+        <property name="phone" type="java.lang.String">
+            <column name="user_phone" />
+        </property>
+        <property name="experience" type="java.lang.String">
+            <column name="user_jianli" />
+        </property>
+        <property name="imgpath" type="java.lang.String">
+            <column name="user_imgpath" />
+        </property>
+        <property name="salary" type="double">
+            <column name="user_salary" />
+        </property>
+    </class>
+</hibernate-mapping>
